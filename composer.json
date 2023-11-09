@@ -1,0 +1,17 @@
+{
+    "name": "nigo/captcha-svg",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nigo\\Captcha\\": "src/Captcha"
+        }
+    },
+    "authors": [
+        {
+            "name": "nikita",
+            "email": "nproger781@gmail.com"
+        }
+    ],
+    "require": {}
+}
