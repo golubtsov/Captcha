@@ -67,4 +67,9 @@ class CaptchaSVG
     {
         return in_array($radius, $this->circlesRadius);
     }
+
+    public function getCountCircles(): int
+    {
+        return $this->countCircles;
+    }
 }
