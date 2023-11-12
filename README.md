@@ -40,7 +40,8 @@ $captcha->setCountCircles();
 
 ![](./dock/images/recaptcha-3.png)
 ![](./dock/images/recaptcha-1.png)
-![](./dock/images/recaptcha-2.png)
+![](./dock/images/recaptcha-2.png)\
+![](./dock/images/recaptcha-html.png)
 
 ## Пример использования
 
@@ -72,12 +73,6 @@ $recaptcha->setCorrelationWidthHeight($height);
 Устанавливает новое соотношение ширины и высоты
 
 ```php
-$recaptcha->setCorrelationWidthHeight($height);
-```
-
-Устанавливает новое соотношение ширины и высоты
-
-```php
 $recaptcha->setCountElementsOnImage($countElementsOnImage);
 ```
 
@@ -88,3 +83,9 @@ $recaptcha->setRecaptchaWidth($width);
 ```
 
 Устанавливает ширину ``<div id="recaptcha">``
+
+```php
+$recaptcha->setCountElementsOnReCaptcha($countElementsOnReCaptcha);
+```
+
+Устанавливает количество SVG-элементов в ``<div id="recaptcha">``
