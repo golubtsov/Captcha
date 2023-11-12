@@ -1,6 +1,6 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once '../Captcha/CaptchaSVG.php';
 
 use Nigo\Captcha\CaptchaSVG;
 

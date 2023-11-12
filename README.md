@@ -1,15 +1,90 @@
-# Генератор Captcha в формате SVG с кругами
+# Captcha/ReCaptcha в формате SVG
+
+## Captcha с кругами
+
 ![](./dock/images/captcha-2.png) \
 ![](./dock/images/captcha-3.png) 
 ![](./dock/images/captcha-1.png)
 
 ## Пример использования
 
-``width`` - ширина экрана \
-``height`` - высота экрана \
-``maxCountCircles`` - количество кругов
-
 ```php
-$captcha = new CaptchaSVG(width: 150, height: 350, maxCountCircles: 12);
+$captcha = new CaptchaSVG();
 echo $captcha->create();
 ```
+
+В класс можно передать следующие параметры:
+
+``width`` - ширина экрана (по умолчанию - 200) \
+``height`` - высота экрана (по умолчанию - 200)\
+``maxCountCircles`` - количество кругов (по умолчанию - 8)\
+
+Методы:
+
+```php
+$captcha->setWidth()
+```
+Устанавливает ширину captcha 
+
+```php
+$captcha->setHeight();
+```
+Устанавливает высоту captcha
+
+```php
+$captcha->setCountCircles();
+```
+Устанавливает количество кругов на captcha
+
+## ReCaptcha
+
+![](./dock/images/recaptcha-1.png)
+![](./dock/images/recaptcha-2.png)
+![](./dock/images/recaptcha-3.png)
+
+## Пример использования
+
+```php
+$recaptcha = new ReCaptchaSVG();
+echo $recaptcha->create();
+```
+
+В класс можно передать следующие параметры:
+
+``$recaptchaWidth`` - ширина ``<div id="recaptcha">``\
+``$height`` - высота одного элемента SVG\
+``$correlationWidthHeight`` - соотношение ширины и высоты (``$width / $height``)\
+``$countElementsOnImage`` - количество элементов на одном элементе SVG
+
+Методы:
+
+```php
+$recaptcha->setStyleForDivReCaptcha($style, $class);
+```
+
+Устанавливает стили для ``<div id="recaptcha">``\
+``$style`` - принимает строку стилей для div или класс CSS, чтобы использовать класс CSS, нужно установить ``$class = true``
+
+```php
+$recaptcha->setCorrelationWidthHeight($height);
+```
+
+Устанавливает новое соотношение ширины и высоты
+
+```php
+$recaptcha->setCorrelationWidthHeight($height);
+```
+
+Устанавливает новое соотношение ширины и высоты
+
+```php
+$recaptcha->setCountElementsOnImage($countElementsOnImage);
+```
+
+Устанавливает количество элементов на одном элементе SVG
+
+```php
+$recaptcha->setRecaptchaWidth($width);
+```
+
+Устанавливает ширину ``<div id="recaptcha">``

@@ -24,7 +24,7 @@ class CaptchaSVG
 
     public function create(): string
     {
-        $svg = "<svg height='{$this->height}' width='{$this->width}' style='background: darkgray'>\n";
+        $svg = "<svg height='{$this->height}' width='{$this->width}' style='background: {$this->createBgColor()}'>\n";
 
         $svg .= $this->createCircles();
 
@@ -71,5 +71,20 @@ class CaptchaSVG
     public function getCountCircles(): int
     {
         return $this->countCircles;
+    }
+
+    public function setWidth(int $width): void
+    {
+        $this->width = $width;
+    }
+
+    public function setHeight(int $height): void
+    {
+        $this->height = $height;
+    }
+
+    public function setCountCircles(int $countCircles): void
+    {
+        $this->countCircles = $countCircles;
     }
 }

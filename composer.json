@@ -13,5 +13,7 @@
             "email": "nproger781@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8"
+    }
 }
