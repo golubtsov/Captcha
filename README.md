@@ -22,6 +22,11 @@ echo $captcha->create();
 Методы:
 
 ```php
+$captcha->getCountCircles()
+```
+Возвращает количество кругов на картинке
+
+```php
 $captcha->setWidth()
 ```
 Устанавливает ширину captcha 
@@ -59,6 +64,12 @@ echo $recaptcha->create();
 ``$countElementsOnImage`` - количество элементов на одном элементе SVG
 
 Методы:
+
+```php
+$recaptcha->getIndexesRepeatImages();
+```
+
+Возвращает массив индексов с повторяющимися картинками
 
 ```php
 $recaptcha->setStyleForDivReCaptcha($style, $class);

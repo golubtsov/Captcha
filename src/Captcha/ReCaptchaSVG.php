@@ -18,6 +18,8 @@ class ReCaptchaSVG
 
     private array $createdImages = [];
 
+    private array $indexesRepeatImages = [];
+
     public function __construct(int $recaptchaWidth = 250, int $height = 0, int $correlationWidthHeight = 3, int $countElementsOnImage = 2)
     {
         $this->recaptchaWidth = $recaptchaWidth;
@@ -29,7 +31,7 @@ class ReCaptchaSVG
     public function create(): string
     {
         for ($i = 0; $i < $this->countElementsOnReCaptcha - 1; $i++) {
-            $this->createdImages[] = $this->createImage($i);
+            $this->createdImages[] = $this->createImage();
         }
 
         return $this->createBlockReCaptcha();
@@ -38,7 +40,7 @@ class ReCaptchaSVG
     public function setStyleForDivReCaptcha(string $style = null, bool $class = false): string
     {
         if (is_null($style)) {
-            return "style='display: grid; grid-template-columns: 1fr 1fr 1fr; width: {$this->recaptchaWidth}; grid-gap: 1px'";
+            return "style='width: {$this->recaptchaWidth}px; display: grid; grid-template-columns: 1fr 1fr 1fr; width: {$this->recaptchaWidth}; grid-gap: 1px'";
         }
 
         if ($class) {
@@ -68,15 +70,14 @@ class ReCaptchaSVG
         $this->recaptchaWidth = $width;
     }
 
+    public function getIndexesRepeatImages(): array
+    {
+        return $this->indexesRepeatImages;
+    }
+
     private function createBlockReCaptcha(): string
     {
-        /** Индекс смещения */
-        $displacementIndex = rand(0, count($this->createdImages) - 1);
-
-        /** Индекс картинки */
-        $imageIndex = rand(0, count($this->createdImages) - 1);
-
-        array_splice($this->createdImages, $displacementIndex, 0, $this->createdImages[$imageIndex]);
+        $this->createRepeatImage();
 
         $block = "<div id='recaptcha' {$this->setStyleForDivReCaptcha()}>";
 
@@ -87,9 +88,28 @@ class ReCaptchaSVG
         return $block;
     }
 
-    private function createImage(int $id): string
+    private function createRepeatImage(): void
     {
-        $svg = "<svg id='$id' height='{$this->height}' width='{$this->getImageWidth()}' style='background: {$this->createBgColor()}; cursor: pointer'>\n";
+        /** Индекс смещения */
+        $displacementIndex = rand(0, count($this->createdImages) - 1);
+
+        /** Индекс картинки */
+        $imageIndex = rand(0, count($this->createdImages) - 1);
+
+        $repeatImage = $this->createdImages[$imageIndex];
+
+        array_splice($this->createdImages, $displacementIndex, 0, $repeatImage);
+
+        foreach ($this->createdImages as $index => $image) {
+            if ($image == $repeatImage) {
+                $this->indexesRepeatImages[] = $index;
+            }
+        }
+    }
+
+    private function createImage(): string
+    {
+        $svg = "<svg height='{$this->height}' width='{$this->getImageWidth()}' style='background: {$this->createBgColor()}; cursor: pointer'>\n";
 
         for ($i = 0; $i < $this->countElementsOnImage; $i++) {
             $elem = rand(0, 1);
