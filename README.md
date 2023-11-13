@@ -45,9 +45,7 @@ $captcha->setCountCircles();
 
 ![](./dock/images/recaptcha-3.png)
 ![](./dock/images/recaptcha-1.png)
-![](./dock/images/recaptcha-2.png)\
-\
-![](./dock/images/recaptcha-html.png)
+![](./dock/images/recaptcha-2.png)
 
 ## Пример использования
 
